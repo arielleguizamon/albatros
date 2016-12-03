@@ -5,10 +5,10 @@ if (cv.ImageSimilarity === undefined) {
   process.exit(0);
 }
 
-cv.readImage("./mona-lisa.jpg", function(err, car1) {
+cv.readImage("./original2.png", function(err, car1) {
   if (err) throw err;
 
-  cv.readImage("./messi.jpg", function(err, car2) {
+  cv.readImage("./comparacion3.png", function(err, car2) {
     if (err) throw err;
 
     cv.ImageSimilarity(car1, car2, function (err, dissimilarity) {
