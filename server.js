@@ -3,7 +3,6 @@ var express = require('express');
 var app = express();
 var compare = require("./util/compare.js");
 
-//app.use(express.static(__dirname+'public'));
 app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
