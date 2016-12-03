@@ -1,22 +1,26 @@
-var cv = require('opencv');
+var fs = require('fs'),
+    imagediff = require('imagediff'),
+    Canvas = require('canvas');
 
-if (cv.ImageSimilarity === undefined) {
-  console.log('TODO: Please port Features2d.cc to OpenCV 3')
-  process.exit(0);
+function loadImage(url, callback) {
+    var image = new Canvas.Image();
+    fs.readFile(url, function(error, data) {
+        if (error) throw error;
+        image.onload = function() {
+            callback(image);
+        };
+        image.src = data;
+    });
+    return image;
 }
 
-cv.readImage("./original2.png", function(err, car1) {
-  if (err) throw err;
-
-  cv.readImage("./comparacion3.png", function(err, car2) {
-    if (err) throw err;
-
-    cv.ImageSimilarity(car1, car2, function (err, dissimilarity) {
-      if (err) throw err;
-
-      console.log('Dissimilarity: ', dissimilarity);
+var aName = 'original.png';
+var bName = 'inundada.png'
+loadImage(aName, function(a) {
+    var aData = imagediff.toImageData(a);
+    loadImage(bName, function(b) {
+        var bData = imagediff.toImageData(b);
+        console.log(" >>>>> equal: ", imagediff.equal(aData, bData));
     });
-
-  });
 
 });

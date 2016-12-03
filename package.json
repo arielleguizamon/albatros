@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/arielleguizamon/albatros#readme",
   "dependencies": {
+    "canvas": "^1.6.2",
+    "imagediff": "^1.0.8",
+    "imagemagick": "^0.1.3",
     "opencv": "^6.0.0"
   }
 }
