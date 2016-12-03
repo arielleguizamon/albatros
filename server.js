@@ -8,6 +8,18 @@ app.get('/', function (req, res) {
 });
 
 
+app.get('/danger', function(req,res){
+    requestify.post('http://example.com', {
+        satatus: 'danger',
+        type: 'flood',
+        coordinates: 'aaa,aaa'
+    })
+    .then(function(response) {
+        // Get the response body (JSON parsed or jQuery object for XMLs)
+        var response = response.getBody();
+
+    });
+})
 
 
 app.listen(3000, function () {
