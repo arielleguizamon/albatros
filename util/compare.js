@@ -4,18 +4,15 @@ var Canvas = require('canvas');
 
 module.exports = {
 
-    compareImages: function(path1, path2) {
-        var firstImage = 'original.png';
-        var comparableImage = 'inundada.png'
-
+    compareImages: function(firstImage, comparableImage,cb) {
         this.loadImage(firstImage, function(a) {
             var fistImageData = imagediff.toImageData(a);
-            loadImage(comparableImage, function(b) {
+            this.loadImage(comparableImage, function(b) {
                 var comparableImageData = imagediff.toImageData(b);
-                console.log("equal: ", imagediff.equal(fistImageData, comparableImageData));
-            });
+                cb(imagediff.equal(fistImageData, comparableImageData));
+            }.bind(this));
 
-        });
+        }.bind(this));
     },
 
     loadImage: function(url, callback) {
