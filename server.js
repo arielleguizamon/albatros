@@ -11,8 +11,8 @@ app.get('/', function(req, res) {
 
 
 app.get('/danger', function(req, res) {
-    var firstImage = './public/original.png';
-    var comparableImage = './public/inundada.png'
+    var firstImage = './public/img/original.png';
+    var comparableImage = './public/img/inundada.png'
 
     compare.compareImages(firstImage, comparableImage, function(equal) {
         console.log('both images are equal? ' + equal)
@@ -33,7 +33,7 @@ app.get('/danger', function(req, res) {
 })
 
 app.get('/live', function(req, res) {
-    res.sendFile(__dirname + '/live.html')
+    res.sendFile(__dirname + '/public/views/live.html')
 
 })
 app.listen(3000, function() {
