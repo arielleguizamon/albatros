@@ -8,11 +8,13 @@ var fs = require('fs-extra'); //File System - for file manipulatio
 
 app.use(busboy());
 
+
+app.use(express.static('public'));
 app.use('/public', express.static(__dirname + '/public'));
 
-app.get('/', function(req, res) {
-    res.send('');
-});
+// app.get('/', function(req, res) {
+//     res.send('');
+// });
 
 app.set('views', __dirname + '/public/views');
 
@@ -82,6 +84,7 @@ app.get('/', function(req, res) {
     //     res.sendFile(__dirname + '/public/views/live.html')
 
 // })
+
 app.listen(3000, function() {
     console.log('Example app listening on port 3000!');
 });
