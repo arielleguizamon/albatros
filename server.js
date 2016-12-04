@@ -17,21 +17,39 @@ app.get('/danger', function(req, res) {
     compare.compareImages(firstImage, comparableImage, function(equal) {
         console.log('both images are equal? ' + equal)
         if (!equal) {
-            requestify.post('http://plataformaalbatros.azurewebsites.net/tables/Alarma', {
-                    satatus: 'danger',
-                    type: 'flood',
-                    coordinates: 'aaa,aaa'
+            requestify.request('http://plataformaalbatros.azurewebsites.net/tables/Alarma', {
+                    method: 'POST',
+                    body: {
+                        'tipo': 'Tormenta',
+                        'latitud': '37.1900',
+                        'longitud': '59.0800',
+                        'activa': 'true'
+
+                    },
+                    headers: {
+                        'ZUMO-API-VERSION': "2.0.0",
+                        'Content-Type': 'application/json'
+                    },
+                    dataType: 'json'
+
+                })
+                .fail(function(err){
+                    console.log(err)
                 })
                 .then(function(response) {
                     // Get the response body (JSON parsed or jQuery object for XMLs)
                     var response = response.getBody();
                     console.log(response)
+                    res.send('alert sent !')
                 });
         }
 
     });
 })
+app.get('/ejemplo-danger',function(req,res){
+    res.sendFile(__dirname + '/public/views/ejemplo-danger.html')
 
+})
 app.get('/live', function(req, res) {
     res.sendFile(__dirname + '/public/views/live.html')
 
