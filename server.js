@@ -3,11 +3,13 @@ var express = require('express');
 var app = express();
 var compare = require("./util/compare.js");
 
+
+app.use(express.static('public'));
 app.use('/public', express.static(__dirname + '/public'));
 
-app.get('/', function(req, res) {
-    res.send('');
-});
+// app.get('/', function(req, res) {
+//     res.send('');
+// });
 
 
 app.get('/danger', function(req, res) {
@@ -18,7 +20,7 @@ app.get('/danger', function(req, res) {
         console.log('both images are equal? ' + equal)
         if (!equal) {
             requestify.post('http://plataformaalbatros.azurewebsites.net/tables/Alarma', {
-                    satatus: 'danger',
+                    status: 'danger',
                     type: 'flood',
                     coordinates: 'aaa,aaa'
                 })
@@ -36,6 +38,12 @@ app.get('/live', function(req, res) {
     res.sendFile(__dirname + '/public/views/live.html')
 
 })
+
+
+app.get('/', function(req, res){
+    res.render('public/index.html');
+});
+
 app.listen(3000, function() {
     console.log('Example app listening on port 3000!');
 });
