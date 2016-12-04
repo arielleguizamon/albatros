@@ -32,7 +32,10 @@ app.get('/danger', function(req, res) {
     });
 })
 
+app.get('/live', function(req, res) {
+    res.sendFile(__dirname + '/live.html')
 
+})
 app.listen(3000, function() {
     console.log('Example app listening on port 3000!');
 });
