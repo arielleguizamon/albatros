@@ -14,35 +14,31 @@
         <img src="public/LogoAlertar.png" alt="LogoalertAR" style="width: 25%; margin-top: -110px; margin-left: 10px;">
     </div>
   </header>
+  <% if ( iguales  !==  true) { %>
+    <div class="alert alert-danger fade in">
+    ALERTA ENVIADA!!!
+  </div>
+  <% } %>
+
   <div>
     <h1 style="margin-left: 235px; font-family:">ORIGINAL</h1>
-    <img src="public/img/Calafate_Inundado.png" alt="" style="float: right; width: 47%; margin-right:12px;">
+    <img src="public/img/original.png" alt="" style="float: right; width: 47%; margin-right:12px;">
     <h1 style="float: right;  margin-right: -450px; margin-top: -50px;">NUEVA IMAGEN</h1>
-    <img src="public/img/Calafate.png" alt="" style="float: left; width: 47%; margin-left: 12px;">
-    <div class="alert alert-danger alert-dismissable fade in" target="_blank">
-      <% if ( iguales ==  true) { %>
-        else
-        alert("ALERTA IMAGEN NO COINCIDE");
-      <% } %>
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>ALERTA</strong> ALERTA IMAGEN NO COMPARADA!!!
-    </div>
-
+    <img src="public/img/comparable.png" alt="" style="float: left; width: 47%; margin-left: 12px;">
 
   </div>
 
-
-    <video style="margin-top: 50px; margin-left: 350px;"></video>
+    <!-- <video style="margin-top: 50px; margin-left: 350px;"></video>
     <script src="public/webcam.js"></script>
+ -->
 
 
 
-
-<!-- <script type="text/javascript">
+ <script type="text/javascript">
     (function(){
        setTimeout(function(){
-         window.location="http://localhost:3000/index";
-       },3000);
+         window.location="http://localhost:3000/";
+       },10000);
     })();
-</script> -->
+</script>
 </body>

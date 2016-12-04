@@ -9,6 +9,9 @@ var fs = require('fs-extra'); //File System - for file manipulatio
 app.use(busboy());
 
 
+app.engine('html', require('ejs').renderFile)
+app.set('view engine', 'ejs')
+
 app.use(express.static('public'));
 app.use('/public', express.static(__dirname + '/public'));
 
