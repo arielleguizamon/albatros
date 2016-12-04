@@ -2,12 +2,15 @@ var requestify = require('requestify');
 var express = require('express');
 var app = express();
 var compare = require("./util/compare.js");
-var busboy = require('connect-busboy'); //middleware for form/file upload
 var path = require('path'); //used for file path
 var fs = require('fs-extra'); //File System - for file manipulatio
+var bodyParser = require('body-parser')
 
-app.use(busboy());
-
+// app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
+    extended: true,
+    limit: '50mb'
+}));
 
 app.use(express.static('public'));
 app.use('/public', express.static(__dirname + '/public'));
@@ -23,18 +26,12 @@ app.post('/upload', function(req, res) {
 
     var fstream;
     console.log('before upload');
-    req.busboy.on('file', function(fieldname, file, filename) {
-        console.log("Uploading: " + filename);
-        //Path where image will be uploaded
-        fstream = fs.createWriteStream(__dirname + '/public/img/comparable.png');
-        file.pipe(fstream);
-        fstream.on('close', function() {
-            console.log("Upload Finished of " + filename);
-            res.sendStatus(200)
-        });
+    img = req.body.imgBase64
+    var base64Data = img.replace(/^data:image\/png;base64,/, "");
+    require("fs").writeFile("./public/img/comparable.png", base64Data, {encoding: 'base64'}, function(err) {
+        if (err)console.log(err);
+        else console.log('imagen subida')
     });
-
-    req.pipe(req.busboy);
 
 });
 

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/arielleguizamon/albatros#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "canvas": "^1.6.2",
     "connect-busboy": "0.0.2",
     "express": "^4.14.0",
